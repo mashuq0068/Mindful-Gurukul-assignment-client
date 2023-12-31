@@ -4,15 +4,38 @@ import UseUsers from "../../Hooks/UseUsers";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import UseAxiosDefault from "../../Hooks/UseAxiosDefault";
+import { useEffect, useState } from "react";
 
 
 
 
 const Dashboard = () => {
+
     const { users , refetch} = UseUsers()
+    const [isFiltered , setIsFiltered] = useState(false)
+    const [data, setData] = useState(users)
+    const [sortBy, setSortBy] = useState(null);
     const navigate = useNavigate()
     const axiosDefault = UseAxiosDefault()
     console.log(users)
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axiosDefault.get(`/filteredUsers?sortBy=${sortBy}`);
+            setData(response.data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, [sortBy]);
+    
+    const handleFilter = (e) => {
+        setIsFiltered(true)
+       setSortBy(e.target.value)
+       
+    }
     const handleDetails = (id) => {
 
         navigate(`/details/${id}`)
@@ -54,7 +77,16 @@ const Dashboard = () => {
                 </Link>
             </div>
             <div>
-               {users?.length !== 0 ? <div className="overflow-x-auto">
+               <select onChange={handleFilter} name="filter">
+                <option value="">Filter by</option>
+                <option value="A-Z">A-Z</option>
+                <option value="Z-A">Z-A</option>
+                <option value="Last Modified">Last Modified</option>
+                <option value="Last Inserted">Last Inserted</option>
+               </select>
+            </div>
+            <div>
+               {(isFiltered ? data : users)?.length !== 0 ? <div className="overflow-x-auto">
                     <table className="table lg:w-[80vw] mx-auto mt-[10vh]">
                        
                         <thead className="bg-[#df4fcc] font-bold">
@@ -69,7 +101,7 @@ const Dashboard = () => {
                         <tbody>
                            
                             {
-                                users?.map((user, i) => <tr onClick={() => handleDetails(user?._id)} key={user?._id} className="bg-base-200 cursor-pointer hover:bg-gray-300  duration-500 rounded-lg">
+                                (isFiltered ? data : users)?.map((user, i) => <tr onClick={() => handleDetails(user?._id)} key={user?._id} className="bg-base-200 cursor-pointer hover:bg-gray-300  duration-500 rounded-lg">
                                     <th>{i + 1}</th>
                                     <td>{user?.userName}</td>
                                     <td>{user?.email}</td>
