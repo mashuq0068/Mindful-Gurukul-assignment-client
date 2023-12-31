@@ -12,6 +12,7 @@ import { useContext, useState } from "react";
 import Select from 'react-select';
 import { AuthContext } from "../../Providers/AuthProvider";
 import UseAxiosDefault from "../../Hooks/UseAxiosDefault";
+import moment from "moment";
 
 
 
@@ -37,6 +38,7 @@ const SignUp = () => {
         const email = form.email.value
         const password = form.password.value
         const phone = form.phone.value
+      
       
         console.log(name, email, password, phone, selectedState)
         if (password.length < 6) {
@@ -68,8 +70,9 @@ const SignUp = () => {
                             userName : name,
                             phone : phone,
                             email : email,
-                            creatorEmail :email
-
+                            creatorEmail :email,
+                            insertedAt : moment().format('MMMM Do YYYY, h:mm:ss a'),
+                            modifiedAt :  moment().format('MMMM Do YYYY, h:mm:ss a')
                         }
                         if(userInfo){
                         axiosDefault.post('/user' , userInfo)

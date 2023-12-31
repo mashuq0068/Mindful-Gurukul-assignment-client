@@ -4,16 +4,17 @@ import UseUsers from "../../Hooks/UseUsers";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import UseAxiosDefault from "../../Hooks/UseAxiosDefault";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 
 
 
 const Dashboard = () => {
-
+    const {user} = useContext(AuthContext)
     const { users , refetch} = UseUsers()
     const [isFiltered , setIsFiltered] = useState(false)
-    const [data, setData] = useState(users)
+    const [data, setData] = useState([])
     const [sortBy, setSortBy] = useState(null);
     const navigate = useNavigate()
     const axiosDefault = UseAxiosDefault()
@@ -21,15 +22,17 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axiosDefault.get(`/filteredUsers?sortBy=${sortBy}`);
+            const response = await axiosDefault.get(`/filteredUsers?sortBy=${sortBy}&email=${user?.email}`);
+            console.log(response.data);
             setData(response.data);
           } catch (error) {
             console.error('Error fetching data:', error);
           }
         };
-    
+      
         fetchData();
       }, [sortBy]);
+      
     
     const handleFilter = (e) => {
         setIsFiltered(true)

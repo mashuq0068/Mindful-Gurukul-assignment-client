@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { VscSaveAs } from "react-icons/vsc";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 
 const Edit = () => {
@@ -41,7 +42,9 @@ const Edit = () => {
             userName: name,
             phone: mobile,
             email: email,
-            creatorEmail: user?.email
+            creatorEmail: user?.email,
+            insertedAt : data?.insertedAt,
+            modifiedAt : moment().format('MMMM Do YYYY, h:mm:ss a')
         }
         if (userInfo) {
             axiosDefault.patch(`/user/${data?._id}`, userInfo)

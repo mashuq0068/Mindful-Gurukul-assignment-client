@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import UseAxiosDefault from "../../Hooks/UseAxiosDefault";
 import Swal from "sweetalert2";
+import moment from "moment";
 
 
 const AddUser = () => {
@@ -20,7 +21,9 @@ const AddUser = () => {
             userName : name,
             phone : mobile,
             email : email,
-            creatorEmail : user?.email
+            creatorEmail : user?.email,
+            insertedAt : moment().format('MMMM Do YYYY, h:mm:ss a'),
+            
         }
         if(userInfo) {
             axiosDefault.post('/user', userInfo)
