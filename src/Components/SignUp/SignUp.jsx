@@ -17,6 +17,7 @@ import UseAxiosDefault from "../../Hooks/UseAxiosDefault";
 
 const SignUp = () => {
     const [selectedState, setSelectedState] = useState({ value: 'Gujarat', label: 'Gujarat' });
+    const [checkBoxRequired , setCheckBoxRequired] = useState(false)
     const axiosDefault = UseAxiosDefault()
 
     const handleStateChange = (selectedOption) => {
@@ -162,18 +163,18 @@ const SignUp = () => {
                                             <span className="label-text mb-3">Gender</span>
                                         </label>
                                         <div className="flex gap-2">
-                                            <input type="radio" name="gender" value="male" id="male" className="radio radio-primary" />
+                                            <input type="radio" name="gender" value="male" id="male" className="radio radio-primary" required/>
                                             <label htmlFor="male" className="2xl:text-[17px] text-[14px]">Male</label>
 
-                                            <input type="radio" name="gender" value="female" id="female" className="radio radio-primary" />
+                                            <input type="radio" name="gender" value="female" id="female" className="radio radio-primary" required />
                                             <label htmlFor="female" className="2xl:text-[17px] text-[14px]">Female</label>
 
-                                            <input type="radio" name="gender" value="others" id="others" className="radio radio-primary" />
+                                            <input type="radio" name="gender" value="others" id="others" className="radio radio-primary" required/>
                                             <label htmlFor="others" className="2xl:text-[17px] text-[14px]">Others</label>
                                         </div>
                                     </div>
 
-                                    <div className="form-control mb-4 mt-4">
+                                    <div className="form-control mb-4 mt-4 checkbox-group required" >
                                         <label className="label">
                                             <span className="label-text mb-3">How did you hear about this?</span>
                                         </label>
@@ -184,7 +185,7 @@ const SignUp = () => {
                                             </div>
 
                                             <div className="flex justify-center items-center gap-1">
-                                                <input type="checkbox" name="source[]" value="Friends" id="friends" className="checkbox checkbox-primary" />
+                                                <input type="checkbox" name="source[]" value="Friends" id="friends" className="checkbox checkbox-primary"  />
                                                 <label htmlFor="friends" className="2xl:text-[17px] text-[14px]">Friends</label>
                                             </div>
 
