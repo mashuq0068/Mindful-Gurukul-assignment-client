@@ -12,8 +12,8 @@ const Details = () => {
     console.log(params?.id)
     const axiosDefault = UseAxiosDefault()
     const { loading } = useContext(AuthContext)
-    
 
+    // loading data of user details
     const { data, isPending, isLoading } = useQuery({
         queryKey: ["user"],
         queryFn: async () => {
@@ -31,14 +31,20 @@ const Details = () => {
     }
 
     return (
-        <div className=" flex justify-center md:w-auto w-[90%] mx-auto items-center h-screen">
-            <div className=" space-y-5 drop-shadow-xl shadow-lg px-4 md:px-12 py-8 shadow-black">
-                <p><span className=" text-gray-600 font-bold">Name</span> :  {data?.userName}</p>
+        
+        <div className="flex justify-center  items-center h-screen bg-gradient-to-r from-[#3490dc] to-[#6574cd]">
+            <div className="w-[90%] md:w-auto space-y-5 mx-auto p-8 bg-white rounded-md md:drop-shadow-2xl md:shadow-2xl ">
+                <p><span className=" text-gray-600 font-bold">Name</span> :  {data?.userName}
+                </p>
                 <p><span className=" text-gray-600 font-bold"> Email </span>: {data?.email}</p>
                 <p><span className=" text-gray-600 font-bold"> Phone </span> : {data?.phone} </p>
-                <Link to={`/edit/${params.id}`} className="btn bg-[#e944d3] hover:bg-[#be31ac]">Edit <FaRegEdit /></Link>
+                <Link to={`/edit/${params.id}`} className="btn bg-[#e944d3] hover:bg-[#be31ac] flex items-center gap-2 mt-4 px-6 py-2 rounded-md text-white">
+                    <span>Edit</span>
+                    <FaRegEdit />
+                </Link>
             </div>
         </div>
+
     )
 
 };

@@ -8,11 +8,15 @@ import AddUserPage from "../Pages/AddUserPage/AddUserPage";
 import PrivateRoute from "./PrivateRoute";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import EditPage from "../Pages/EditPage/EditPage";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const Router = createBrowserRouter([
+    // main (root)
     {
      path:'/',
      element : <MainRoot></MainRoot>,
+     errorElement : <ErrorPage></ErrorPage>,
+    //  children
      children : [
         {
             path : '/',

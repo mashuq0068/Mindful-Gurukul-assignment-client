@@ -18,9 +18,8 @@ import moment from "moment";
 
 const SignUp = () => {
     const [selectedState, setSelectedState] = useState({ value: 'Gujarat', label: 'Gujarat' });
-    const [checkBoxRequired , setCheckBoxRequired] = useState(false)
     const axiosDefault = UseAxiosDefault()
-
+    //  handle state change to record changed state
     const handleStateChange = (selectedOption) => {
         setSelectedState(selectedOption);
     };
@@ -31,6 +30,7 @@ const SignUp = () => {
 
     } = useContext(AuthContext)
     const navigate = useNavigate()
+    // handle onSubmit of sign up form
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.target
@@ -38,29 +38,29 @@ const SignUp = () => {
         const email = form.email.value
         const password = form.password.value
         const phone = form.phone.value
-      
-      
         console.log(name, email, password, phone, selectedState)
+        // password verification
         if (password.length < 6) {
             return toast.error(" password should be more than 6 characters")
 
         }
+        // password verification
         else if (/^[^A-Z]*$/.test(password)) {
             return toast.error("Password must be have at least one capital letter")
 
         }
+        // password verification
         else if (/^[^!@#$%^&*()_+{}\[\]:;<>,.?~\\-]*$/.test(password)) {
             return toast.error("Special character must be included in password")
 
         }
+        // if password is okay , then sign up the user
         createUser(email, password)
 
 
             .then(data => {
                 console.log(data)
-               
-
-
+            //    update sign up user to add displayName
                 updateProfile(auth.currentUser, {
                     displayName: name,
                 })
@@ -75,15 +75,15 @@ const SignUp = () => {
                             modifiedAt :  moment().format('MMMM Do YYYY, h:mm:ss a')
                         }
                         if(userInfo){
+                            // save user to server
                         axiosDefault.post('/user' , userInfo)
                         .then(res => {
                             console.log(res.data)
                         })
                         }
                     })
+                    // handle error on update an user
                     .catch(errorData => {
-
-
 
                         console.error(errorData.code)
                     })
@@ -92,11 +92,12 @@ const SignUp = () => {
 
 
 
-
+                // after sign up navigate to login
                 navigate('/login')
-                toast.success("You signed up successfully and your details has been saved")
+                
 
             })
+            // handle error on sign up user
             .catch(error => {
 
                 if (error.code === "auth/email-already-in-use") {
@@ -115,38 +116,43 @@ const SignUp = () => {
 
     }
     return (
+        // main div (relative)
         <div className="relative">
-            
+            {/* absolute div */}
             <div className="linear absolute w-[100%] top-[2%]  pb-[10%] ">
-
+                {/* notification of react-hot-toast */}
                 <Toaster
                     position="top-right"
                     reverseOrder={false}
                     toastOptions={{ className: " text-center" }}
 
                 />
+                {/* header of sign up */}
                 <h1 className=" text-4xl text-gradient font-bold text-center mt-8 mb-12 ">Sign<span className=""> Up</span></h1>
+                {/* main form div */}
                 <div className="w-[90%]  lg:w-[45%] mx-auto">
 
                     <div className="hero w-full  bg-base-200">
                         <div className=" w-full flex-col ">
 
                             <div className=" flex-shrink-0 w-full  h-auto md:shadow-black md:shadow-lg bg-base-100">
-
+                              {/* form of sign up */}
                                 <form onSubmit={handleSubmit} className="md:card-body w-full h-auto">
+                                    {/* name */}
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text ">Name</span>
                                         </label>
                                         <input type="text" name="name" placeholder="Name" className="input  input-bordered" required />
                                     </div>
-
+                                    {/* email */}
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text ">Email</span>
                                         </label>
                                         <input type="email" placeholder="email" name="email" className="input  input-bordered" required />
                                     </div>
+                                    {/* password */}
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text ">Password</span>
@@ -154,6 +160,7 @@ const SignUp = () => {
                                         <input type="password" placeholder="password" name="password" className="input  input-bordered" required />
 
                                     </div>
+                                    {/* phone */}
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text ">Phone</span>
@@ -161,6 +168,7 @@ const SignUp = () => {
                                         <input type="number" placeholder="Phone Number" name="phone" className="input  input-bordered" required />
 
                                     </div>
+                                    {/* gender */}
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text mb-3">Gender</span>
@@ -176,7 +184,7 @@ const SignUp = () => {
                                             <label htmlFor="others" className="2xl:text-[17px] text-[14px]">Others</label>
                                         </div>
                                     </div>
-
+                                    {/* checkbox of How did you hear about this? */}
                                     <div className="form-control mb-4 mt-4 checkbox-group required" >
                                         <label className="label">
                                             <span className="label-text mb-3">How did you hear about this?</span>
@@ -203,6 +211,7 @@ const SignUp = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    {/* city */}
 
                                     <div className="form-control">
                                         <label className="label">
@@ -214,7 +223,7 @@ const SignUp = () => {
                                             <option value="Ahmedabad">Ahmedabad</option>
                                         </select>
                                     </div>
-
+                                     {/* state */}
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text text-base">State</span>
@@ -233,10 +242,11 @@ const SignUp = () => {
                                         />
 
                                     </div>
-
+                                  {/* switch to login */}
                                     <div>
                                         <p className="text-black mt-3  text-center ">Already a user ? go for <Link to='/login' className="text-gradient font-bold ">login</Link></p>
                                     </div>
+                                    {/* sign up button */}
                                     <div className="form-control mt-6">
                                         <button className="text-red text-center mt-3 cursor-pointer hover:before:bg-redborder-red-500 relative w-full py-3 overflow-hidden border  border-purple-500  rounded-xl flex justify-center items-center gap-2 font-semibold  bg-white  shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-gradient-to-r from-[#e944d3] to-[#25baff]  before:transition-all before:duration-100 hover:text-black hover:border-none hover:before:left-0 hover:shadow-purple-500 hover:before:w-full ">
                                             <input type="submit" className="relative z-10" value="Save" />

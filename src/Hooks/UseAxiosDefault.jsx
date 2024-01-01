@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosDefault = axios.create({
-    baseURL : 'http://localhost:5000'
+    baseURL : 'https://mindful-gurukul-assignment-server.vercel.app'
 })
 
 const UseAxiosDefault = () => {

@@ -1,9 +1,12 @@
+import Banner from "../../Components/Banner/Banner";
+import Footer from "../../Components/Footer/Footer";
 
 
 const HomePage = () => {
     return (
-        <div>
-          this is home  
+        <div className=" space-y-24">
+          <Banner></Banner>
+          <Footer></Footer>
         </div>
     );
 };
