@@ -20,7 +20,7 @@ const UseUsers = () => {
     })
     if( isPending){
         return(
-            <span className="loading loading-spinner text-secondary"></span>
+            <span className="fixed top-[50vh] left-[45vw] loading loading-spinner text-secondary"></span>
         )
     }
     return {users , isPending , isLoading , refetch}
