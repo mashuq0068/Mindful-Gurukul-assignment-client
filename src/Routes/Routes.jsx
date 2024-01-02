@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import EditPage from "../Pages/EditPage/EditPage";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AboutPage from "../Pages/AboutPage/AboutPage";
 
 const Router = createBrowserRouter([
     // main (root)
@@ -45,6 +46,10 @@ const Router = createBrowserRouter([
         {
             path:'/edit/:id',
             element:<EditPage></EditPage>
+        },
+        {
+            path:'/about',
+            element:<AboutPage></AboutPage>
         }
      ]
     }

@@ -1,15 +1,7 @@
-
-
-
 import { Link, useNavigate } from "react-router-dom";
-
 import toast, { Toaster } from "react-hot-toast";
-
-
 import { VscSaveAs } from "react-icons/vsc";
-
 import { useContext } from "react";
-
 import { AuthContext } from "../../Providers/AuthProvider";
 
 
@@ -36,14 +28,14 @@ const Login = () => {
           console.log(res)
           // navigate on successful login
           if (res) {
-            navigate(location?.state ? location?.state : '/')
+            navigate('/dashboard')
 
           }
         })
         // error on unsuccessful login
         .catch(error => {
           console.error(error.message)
-          toast.error("Your email or password may be invalid")
+          toast.error(error.message)
         })
     }
 

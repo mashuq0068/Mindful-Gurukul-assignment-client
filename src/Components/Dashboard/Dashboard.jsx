@@ -181,7 +181,7 @@ const Dashboard = () => {
 
             </div>
             {/* User lists */}
-            <div>
+            <div className=" mb-[10vh]">
                 {(isFiltered ? data : users)?.length !== 0 ? <div className="overflow-x-auto">
                     <table className="table lg:w-[80vw] mx-auto mt-[10vh]">
 
