@@ -10,6 +10,7 @@ import DetailsPage from "../Pages/DetailsPage/DetailsPage";
 import EditPage from "../Pages/EditPage/EditPage";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AboutPage from "../Pages/AboutPage/AboutPage";
+import OpenAi from "../Pages/OpenAi/OpenAi";
 
 const Router = createBrowserRouter([
     // main (root)
@@ -50,6 +51,10 @@ const Router = createBrowserRouter([
         {
             path:'/about',
             element:<AboutPage></AboutPage>
+        },
+        {
+            path:'/open-ai',
+            element:<OpenAi></OpenAi>
         }
      ]
     }

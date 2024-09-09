@@ -49,7 +49,7 @@ const Navbar = () => {
   const links = 
   
   <>
-   <ul className='flex lg:gap-[15%] gap-[4vh] lg:flex-row flex-col  uppercase font-semibold'>
+   <ul className='flex  lg:gap-[15%] gap-[4vh] lg:flex-row flex-col  uppercase font-semibold'>
    <NavLink  to={'/'}>Home</NavLink>
    <NavLink to={'/dashboard'}>Dashboard</NavLink>
    <NavLink to={'/about'}>About</NavLink>
@@ -97,17 +97,17 @@ const Navbar = () => {
    </div>
   </div>
   {/* desktop nav */}
-  <div className=" hidden navbar-center lg:flex">
-    <ul className="menu menu-horizontal px-1">
-   <div>
+  <div className=" hidden  lg:flex">
+    <ul className="menu  menu-horizontal px-1">
+   <div className=''>
    {links}
    </div>
     
     </ul>
   </div>
-  <div className="navbar-end">
+  {/* <div className="navbar-end">
        
-  </div>
+  </div> */}
 </div>
        
        </>

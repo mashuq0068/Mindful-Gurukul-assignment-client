@@ -53,7 +53,7 @@ const AddUser = () => {
     }
     return (
       // main div
-        <div className="lg:w-[40vw] rounded-md md:drop-shadow-2xl md:shadow-2xl bg-white mx-auto md:w-[70vw]  w-[90vw]">
+        <div className="lg:w-[40vw] md:px-0 px-5 md:py-0 py-5 rounded-md md:drop-shadow-2xl md:shadow-2xl bg-white mx-auto md:w-[70vw]  w-[90vw]">
           {/* form of add user */}
              <form onSubmit={handleSubmit}  className="md:card-body lg:drop-shadow-xl  w-full h-auto">
                                     {/* name */}
