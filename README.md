@@ -1,9 +1,7 @@
-# React + Vite
+website live link : https://mindful-gurukal-assignment-client.vercel.app/
+### Website Rules:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-https://mindfulgurukul.com/task-for-full-stack-developer-hiring/ 
+1. To view the dashboard user list, users must click on the "Go to Dashboard" button.
+2. If a user is not logged in, they will be redirected to the sign-up page.
+3. After completing the sign-up process, users will be redirected to the login page.
+4. Once logged in, users can access the dashboard to view the user list.
